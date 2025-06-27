@@ -3,8 +3,8 @@
 #include "InputManager.h"
 #include "GameTimer.h"
 #include "SolarSystemRenderer.h"
-#include "DefaultScene.h"
-#include "HierarchicalTransformTestScene.h"
+//#include "DefaultScene.h"
+//#include "HierarchicalTransformTestScene.h"
 #include "TransformPracticeScene.h"
 //
 // class MainApp

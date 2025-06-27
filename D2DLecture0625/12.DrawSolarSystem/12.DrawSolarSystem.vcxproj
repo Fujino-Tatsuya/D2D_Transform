@@ -144,6 +144,7 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MainApp.h" />
     <ClInclude Include="OnlyForTestScene.h" />
+    <ClInclude Include="Planet.h" />
     <ClInclude Include="SolarSystemRenderer.h" />
     <ClInclude Include="TMHelper.h" />
     <ClInclude Include="pch.h" />
@@ -159,6 +160,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainApp.cpp" />
     <ClCompile Include="OnlyForTestScene.cpp" />
+    <ClCompile Include="Planet.cpp" />
     <ClCompile Include="SolarSystemRenderer.cpp" />
     <ClCompile Include="TMHelper.cpp" />
     <ClCompile Include="pch.cpp" />

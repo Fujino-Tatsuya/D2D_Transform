@@ -133,7 +133,7 @@ public:
         auto scaleFlip = MAT3X2F::Scale(m_zoom,
             -m_zoom);
         //(-1,1)
-        // 3) 화면 정중앙으로 이동
+        // 3) 화면 정중앙으로 이동              // 이전까진 논리 월드 + 논리 view, 스크린 좌표로 변환을 위한 센터TM
         auto center = MAT3X2F::Translation(
             m_screenWidth * 0.5f,
             m_screenHeight * 0.5f);

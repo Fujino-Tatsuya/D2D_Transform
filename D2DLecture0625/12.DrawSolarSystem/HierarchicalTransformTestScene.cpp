@@ -45,7 +45,7 @@ public:
 
     void Draw(TestRenderer& testRender, D2D1::Matrix3x2F viewTM)
     {
-        static  D2D1_RECT_F s_rect = D2D1::RectF(0.f, 0.f, 100.f, 100.f);
+        static  D2D1_RECT_F s_rect = D2D1::RectF(0.f, 0.f, 100.f, 100.f); //draw 마다 객체 생성 시러시러
 
         D2D1::Matrix3x2F worldTM = m_transform.GetWorldMatrix();
 
@@ -330,14 +330,18 @@ void HierarchicalTransformTestScene::AddBoxObjects(D2D1_POINT_2F point)
 {
     MAT3X2F cameraTM = m_UnityCamera.GetViewMatrix();
     cameraTM.Invert();
+    //왜 뒤집었지?
 
     D2D1_POINT_2F worldPt = cameraTM.TransformPoint(point);
+    //월드에서의 카메라 위치를 찾으려고?
+    //카메라 위치에서의 월드 포지션을 찾으려 한것 같은데
 
     BoxObject* pNewBox = new BoxObject(m_BitmapPtr);
 
     pNewBox->SetPosition(Vec2(worldPt.x, worldPt.y));
 
     m_BoxObjects.push_back(pNewBox);
+ 
 }
 
 void HierarchicalTransformTestScene::ClearBoxObjects()
