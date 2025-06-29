@@ -29,15 +29,15 @@ namespace D2DTM
 
 	void Transform::UpdateMatrices()
 	{
-		const auto P = D2D1::Matrix3x2F::Translation(-m_pivot.x, -m_pivot.y);
-
-		const auto S = D2D1::Matrix3x2F::Scale(m_scale.x, m_scale.y);
-
-		const auto R = D2D1::Matrix3x2F::Rotation(m_rotation);
-
-		const auto T1 = D2D1::Matrix3x2F::Translation(m_pivot.x, m_pivot.y);
-		
-		const auto T2 = D2D1::Matrix3x2F::Translation(m_position.x, m_position.y);
+		const auto P = D2D1::Matrix3x2F::Translation(-m_pivot.x, -m_pivot.y);				// 정확한 포지션을 얻기위한 피벗 초기화
+																							// 
+		const auto S = D2D1::Matrix3x2F::Scale(m_scale.x, m_scale.y);						// 크기
+																							//
+		const auto R = D2D1::Matrix3x2F::Rotation(m_rotation);								// 회전
+																							//
+		const auto T1 = D2D1::Matrix3x2F::Translation(m_pivot.x, m_pivot.y);				// 피벗 보정하고
+																							// 
+		const auto T2 = D2D1::Matrix3x2F::Translation(m_position.x, m_position.y);			// 원래 위치에
 
 		m_matrixLocal = P * S * R * T1 * T2;
 		//m_matrixLocal = S * R * T2;

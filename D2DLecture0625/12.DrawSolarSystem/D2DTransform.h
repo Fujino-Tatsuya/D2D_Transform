@@ -14,12 +14,13 @@ namespace D2DTM
         BottomRight,
         Center
     };
+    //PivotPreset::Center 형태로 접근 + 암시적 형변환 안된다고 오~ ex) (int a = TopLeft) == false
 
     class Transform
     {
     public:
-        using Vec2 = MYHelper::Vector2F;
-        using Mat3x2 = D2D1::Matrix3x2F;
+        using Vec2 = MYHelper::Vector2F; // using == typedef
+        using Mat3x2 = D2D1::Matrix3x2F; // but using은 템플릿 별칭 정의 가능 ex) template<T>\n using myVector = vector<T>;
 
         Transform()
             : m_position{ 0, 0 }, m_rotation(0.0f), m_scale{ 1.0f, 1.0f },
@@ -27,7 +28,7 @@ namespace D2DTM
         {
             m_matrixLocal = D2D1::Matrix3x2F::Identity();
             m_matrixWorld = D2D1::Matrix3x2F::Identity();
-        }
+        } 
 
         ~Transform()
         {
@@ -41,7 +42,7 @@ namespace D2DTM
 
         void SetParent(Transform* newParent)
         {
-            assert(newParent != this); // 자기 자신을 부모로 설정할 수 없음
+            assert(newParent != this);   // 자기 자신을 부모로 설정할 수 없음
             assert(m_parent == nullptr); // DetachFromParent 를 먼저 호출하고 다시 SetParent를 호출해야 함
 
             m_parent = newParent;
@@ -64,7 +65,7 @@ namespace D2DTM
         void AddChild(Transform* child)
         {
             // 자식의 로컬 좌표를 부모 좌표계로 변환
-            // 자식의 로컬 트 랜스폼 * 부모의 월드 트랜스폼의 역행렬을 곱하고 원소 추출
+            // 자식의 로컬 트랜스폼 * 부모의 월드 트랜스폼의 역행렬을 곱하고 원소 추출
             D2D1::Matrix3x2F chiledLocalTM = child->GetLocalMatrix(); //local == world
             chiledLocalTM = chiledLocalTM * GetInverseWorldMatrix(); // *inverse* 임
             
@@ -156,7 +157,7 @@ namespace D2DTM
         }
 
     private:
-        void SetDirty()
+        void SetDirty() //내 데이터가 수정되면 child 도 반영 해야하니까 SetDirty
         {
             m_dirty = true;
             for (auto* child : m_children)

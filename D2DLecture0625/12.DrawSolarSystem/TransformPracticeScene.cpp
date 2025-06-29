@@ -121,7 +121,13 @@ void TransformPracticeScene::InitPlanet()
 		Planet* bigbang = new Planet(m_BitmapList[i]);
 
 		bigbang->SetPosition(Vec2(0, i * -80));
+		if (i != 0)
+		{
+			bigbang->SetParent(m_PlanetObjects[0]);
+		}
+
 		m_PlanetObjects.push_back(bigbang);
+		m_PlanetObjects[i]->ToggleSelfRotation();
 
 	}
 
