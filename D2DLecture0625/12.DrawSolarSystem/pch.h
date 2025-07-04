@@ -36,7 +36,7 @@
 #include <dwrite_3.h>                // DirectWrite (최신 텍스트 엔진)
 #include <wincodec.h>                // WIC (이미지 로딩)
 
-
+#include <fstream>
 #define _USE_MATH_DEFINES
 #include <cmath>
 

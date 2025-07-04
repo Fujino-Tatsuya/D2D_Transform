@@ -123,4 +123,10 @@
       <Filter>과제</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resource\redbirdSheet.json">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 #include "SolarSystemRenderer.h"
 #include "InputManager.h"
 #include "DefaultScene.h"
+#include "json.hpp"
 
 std::wstring& DefaultTestScene::GetTitleString() const
 {
@@ -17,22 +18,33 @@ std::wstring& DefaultTestScene::GetTitleString() const
     return ret;
 }
 
-void DefaultTestScene::SetUp(HWND hWnd)
-{
-    m_hWnd = hWnd;
-
-    SetWindowText(m_hWnd, L"이동 키로 카메라 이동, F1 좌표계 모드 전환, F2 렌더 모드 전환");
-
-    RECT rc;
-    if (::GetClientRect(hWnd, &rc))
-    {
-        float w = static_cast<float>(rc.right - rc.left);
-        float h = static_cast<float>(rc.bottom - rc.top);
-
-        m_unityCamera.SetScreenSize(w, h);
-    }
-
-}
+//void DefaultTestScene::SetUp(HWND hWnd)
+//{
+//    m_hWnd = hWnd;
+//
+//    SetWindowText(m_hWnd, L"이동 키로 카메라 이동, F1 좌표계 모드 전환, F2 렌더 모드 전환");
+//
+//    RECT rc;
+//    if (::GetClientRect(hWnd, &rc))
+//    {
+//        float w = static_cast<float>(rc.right - rc.left);
+//        float h = static_cast<float>(rc.bottom - rc.top);
+//
+//        m_unityCamera.SetScreenSize(w, h);
+//    }
+//
+//    std::ifstream file("../Resource/redbirdSheet.json", std::ios::in);
+//
+//	if (!file.is_open())
+//	{
+//		std::cerr << "Error opening example.txt.\n";
+//		return 1;
+//	}
+//    
+//
+//    //SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/cat.png", *m_BitmapPtr.GetAddressOf());
+//
+//}
 
 void DefaultTestScene::Tick(float deltaTime)
 {

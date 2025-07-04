@@ -47,19 +47,11 @@ void TransformPracticeScene::SetUp(HWND hWnd)
 	SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/uranus.png", *m_BitmapList[7].GetAddressOf());	  // 8: Uranus
 	SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/neptune.png", *m_BitmapList[8].GetAddressOf());	  // 9: Neptune
 	SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/moon.png", *m_BitmapList[9].GetAddressOf());//10: Luna
-
-	//SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/sun.png", *m_Bitmap1.GetAddressOf());
-	//SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/mercury.png", *m_Bitmap2.GetAddressOf());
-	//SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/venus.png", *m_Bitmap3.GetAddressOf());
-	//SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/earth.png", *m_Bitmap4.GetAddressOf());
-	//SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/mars.png", *m_Bitmap5.GetAddressOf());
-	//SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/jupiter.png", *m_Bitmap6.GetAddressOf());
-	//SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/saturn.png", *m_Bitmap7.GetAddressOf());
-	//SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/uranus.png", *m_Bitmap8.GetAddressOf());
-	//SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/neptune.png", *m_Bitmap9.GetAddressOf());
-	//SolarSystemRenderer::Instance().CreateBitmapFromFile(L"../Resource/moon.png", *m_Bitmap10.GetAddressOf());
 																					   
 	InitPlanet();
+
+	m_PlanetObjects[9]->SetPosition(Vec2(200, -320));
+	m_PlanetObjects[9]->SetParent(m_PlanetObjects[3]);
 
 	RECT rc;
 	if (::GetClientRect(hWnd, &rc))
@@ -116,15 +108,17 @@ void TransformPracticeScene::ProcessKeyboardEvents()
 
 void TransformPracticeScene::InitPlanet()
 {
+	int num = -20;
 	for(int i = 0; i < planetCount; i++)
 	{
 		Planet* bigbang = new Planet(m_BitmapList[i]);
 
-		bigbang->SetPosition(Vec2(0, i * -80));
+		bigbang->SetPosition(Vec2(num, i * -80));
 		if (i != 0)
 		{
 			bigbang->SetParent(m_PlanetObjects[0]);
 		}
+		num *= -2;
 
 		m_PlanetObjects.push_back(bigbang);
 		m_PlanetObjects[i]->ToggleSelfRotation();
